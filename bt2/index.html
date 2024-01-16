@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./style.css">
+    <title>Bai tap so 2</title>
+</head>
+
+<body>
+    <main>
+        <div class="content">
+            <div class="transcript">
+                <h2>BANG DIEM CUA EM</h2>
+                <div class="input_transcript">
+                    <div class="label">
+                        <label for="semester_1">Semester1:</label>
+                        <label for="semester_2">Semester2:</label>
+                        <label for="year">Year:</label>
+                        <label for="summerise">Summerise:</label>
+                    </div>
+                    <div class="input">
+                        <input type="number" name="" id="semester_1"><br><br>
+                        <input type="number" name="" id="semester_2"><br><br>
+                        <select name="" id="Year">
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                        </select><br> <br>
+                        <input type="number" name="" id="summerise">
+                        <p id="result"></p>
+                        <div class="button">
+                            <input onclick="result(semester_1.value,semester_2.value,Year.value,summerise.value)"
+                                type="button" value="OK">
+                            <input onclick="cancel()" type="button" value="Cancel">
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+    </main>
+    <script>
+        function result(semester_1,semester_2,Year,summerise){
+        var result = 0;
+        var str_result= '';
+        if(semester_1 !='' && semester_2 !=''){
+            semester_1 = Number(semester_1)
+            semester_2 = Number(semester_2)
+            if( semester_1 >= 0 && semester_1 <= 10 && semester_2 >= 0 && semester_2 <= 10){
+                if(Year == 1){
+                    result = (semester_1+(semester_2 * 2))/3
+                }else if(Year == 2){
+                    result = (semester_1+(semester_2 * 3))/4
+                }else if(Year == 3){
+                    result = (semester_1+(semester_2 * 4))/5
+                }
+                document.getElementById("summerise").value = result
+            if(result > 9){
+                str_result = 'Hoc sinh gioi'
+            }else if(result > 7){
+                str_result = 'Hoc sinh kha'
+            }else if(result >= 4){
+                str_result = 'Hoc sinh trung binh'
+            }else{
+                str_result = 'Hoc sinh yeu'
+            }
+            document.getElementById("result").innerHTML = str_result;
+            document.getElementById("result").style.color = "red";
+            }else{
+                alert("Điểm của bạn chỉ từ 0 -> 10")
+            }
+        }else{
+            alert("Vui lòng nhập điểm")
+        }
+    }
+    function cancel() {
+    document.getElementById("semester_1").value = '';
+    document.getElementById("semester_2").value = '';
+    document.getElementById("Year").value = 1;
+    document.getElementById("summerise").value = '';
+    document.getElementById("result").innerHTML = '';
+    }
+    </script>
+</body>
+
+</html>
